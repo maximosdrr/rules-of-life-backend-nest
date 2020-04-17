@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, InsertResult } from 'typeorm';
 import { User } from './interfaces/user.entity';
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
 @Injectable()
 export class UserService {
@@ -30,14 +30,5 @@ export class UserService {
     const token: string = sign({ id }, secret, { expiresIn: 300 });
 
     return { auth: true, token: token };
-  }
-
-  async verifyJwt(token: string): Promise<object> {
-    const secret: string = process.env.SECRET;
-    if (!token) return { auth: false, message: 'No token provided' };
-    verify(token, secret, (err, decoded) => {
-      if (err) return { auth: false, message: 'Failed to authenticate' };
-      return { auth: true, message: 'autorized', decodedToken: decoded.id };
-    });
   }
 }

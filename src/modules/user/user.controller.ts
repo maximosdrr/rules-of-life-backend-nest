@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { InsertResult } from 'typeorm';
 import { UserService } from './user.service';
 import { User } from './interfaces/user.entity';
@@ -21,10 +21,5 @@ export class UserController {
     );
     if (user) return this.userService.getToken(user);
     return { auth: false, token: null };
-  }
-
-  @Get('teste')
-  teste(): object {
-    return { teste: true };
   }
 }
