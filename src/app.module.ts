@@ -3,6 +3,7 @@ import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { RuleModule } from './modules/rule/rule.module';
+import { RuleGroupModule } from './modules/rule-group/rule-group.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { RuleModule } from './modules/rule/rule.module';
     ConfigModule.forRoot(),
     UserModule,
     RuleModule,
+    RuleGroupModule,
   ],
   controllers: [],
   providers: [],

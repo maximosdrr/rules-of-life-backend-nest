@@ -1,8 +1,8 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { InsertResult } from 'typeorm';
 import { UserService } from './user.service';
-import { User } from './interfaces/user.entity';
 import { Login } from './interfaces/login.interface';
+import { User } from './entitys/user.entity';
 
 @Controller('user')
 export class UserController {

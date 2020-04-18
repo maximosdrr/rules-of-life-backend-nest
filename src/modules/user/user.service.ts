@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, InsertResult } from 'typeorm';
-import { User } from './interfaces/user.entity';
 import { sign } from 'jsonwebtoken';
+import { User } from './entitys/user.entity';
 
 @Injectable()
 export class UserService {
