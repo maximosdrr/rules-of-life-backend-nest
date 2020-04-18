@@ -19,5 +19,5 @@ export class RuleGroup {
     type => Rule,
     rule => rule.ruleGroup,
   )
-  rule: Rule[];
+  rule: Rule;
 }

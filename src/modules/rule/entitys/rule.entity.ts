@@ -16,13 +16,13 @@ export class Rule {
 
   @ManyToOne(
     type => User,
-    user => user.id,
+    user => user.rule,
   )
   user: User;
 
   @ManyToOne(
     type => RuleGroup,
-    ruleGroup => ruleGroup.id,
+    ruleGroup => ruleGroup.rule,
   )
   ruleGroup: RuleGroup[];
 }

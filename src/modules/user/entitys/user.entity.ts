@@ -25,5 +25,5 @@ export class User {
     type => Rule,
     rule => rule.user,
   )
-  rule: Rule[];
+  rule: Rule;
 }
