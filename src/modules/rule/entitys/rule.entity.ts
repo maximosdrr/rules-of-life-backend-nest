@@ -14,12 +14,11 @@ export class Rule {
   @Column()
   description: string;
 
-  @Column()
   @ManyToOne(
     type => User,
     user => user.id,
   )
-  user: User[];
+  user: User;
 
   @ManyToOne(
     type => RuleGroup,

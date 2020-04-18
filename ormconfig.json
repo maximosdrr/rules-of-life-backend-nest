@@ -6,5 +6,6 @@
   "password": "",
   "database": "rules_of_life",
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "synchronize": true
+  "synchronize": true,
+  "bigNumberStrings": true
 }
