@@ -1,10 +1,12 @@
-import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, UseGuards } from '@nestjs/common';
 import { RuleGroupService } from './rule-group.service';
 import { RuleGroupInterface } from './interfaces/rule-group.interface';
 import { InsertResult } from 'typeorm';
 import { RuleGroup } from './entitys/rule-group.entity';
+import { JwtGuards } from 'src/auth/jwt.guards';
 
 @Controller('rule-group')
+@UseGuards(JwtGuards)
 export class RuleGroupController {
   constructor(private ruleGroupService: RuleGroupService) {}
   @Post('insert')

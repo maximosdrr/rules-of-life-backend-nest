@@ -27,7 +27,7 @@ export class UserService {
   async getToken(user: User): Promise<object> {
     const id: number = user.id;
     const secret: string = process.env.SECRET;
-    const token: string = sign({ id }, secret, { expiresIn: 300 });
+    const token: string = sign({ id }, secret, { expiresIn: 3000000 });
 
     return { auth: true, token: token };
   }

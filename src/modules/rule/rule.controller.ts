@@ -1,9 +1,11 @@
-import { Controller, Post, Body, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, UseGuards } from '@nestjs/common';
 import { RuleService } from './rule.service';
-import { InsertResult, SelectQueryBuilder } from 'typeorm';
+import { InsertResult } from 'typeorm';
 import { Rule } from './entitys/rule.entity';
+import { JwtGuards } from 'src/auth/jwt.guards';
 
 @Controller('rule')
+@UseGuards(JwtGuards)
 export class RuleController {
   constructor(private ruleService: RuleService) {}
   @Post('insert')
