@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, InsertResult } from 'typeorm';
+import { Repository, InsertResult, DeleteResult } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import { User } from './entitys/user.entity';
+import { UserUpdateData } from './interfaces/user.update.data';
 
 @Injectable()
 export class UserService {
@@ -30,5 +31,26 @@ export class UserService {
     const token: string = sign({ id }, secret, { expiresIn: 3000000 });
 
     return { auth: true, token: token };
+  }
+
+  async update(userId: number, user: UserUpdateData): Promise<User> {
+    const userToUpdate: User = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+
+    if (userToUpdate) {
+      userToUpdate.name = user.name;
+      userToUpdate.birthday = user.birthday;
+      return this.userRepository.save(userToUpdate);
+    }
+    return;
+  }
+
+  async delete(userId: number): Promise<DeleteResult> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .delete()
+      .where('id = :id', { id: userId })
+      .execute();
   }
 }

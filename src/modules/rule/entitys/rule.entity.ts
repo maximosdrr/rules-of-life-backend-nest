@@ -23,12 +23,14 @@ export class Rule {
   @ManyToOne(
     type => User,
     user => user.rule,
+    { onDelete: 'CASCADE' },
   )
   user: User;
 
   @ManyToOne(
     type => RuleGroup,
     ruleGroup => ruleGroup.rule,
+    { onDelete: 'CASCADE' },
   )
   ruleGroup: RuleGroup;
 
