@@ -14,6 +14,7 @@ import { User } from './entitys/user.entity';
 import { JwtGuards } from 'src/auth/jwt.guards';
 import { UserUpdateData } from './interfaces/user.update.data';
 import { request } from 'http';
+import { PasswordUpdateData } from './interfaces/password.update.data';
 
 @Controller('user')
 export class UserController {
@@ -47,5 +48,13 @@ export class UserController {
   async delete(@Req() request): Promise<DeleteResult> {
     const userId = request.headers['user-id'];
     return this.userService.delete(userId);
+  }
+
+  @UseGuards(JwtGuards)
+  @Put('changePassword')
+  async changePassword(@Req() request): Promise<User> {
+    const userId = request.headers['user-id'];
+    const passwordUpdateData: PasswordUpdateData = request.body;
+    return this.userService.changePassword(userId, passwordUpdateData);
   }
 }

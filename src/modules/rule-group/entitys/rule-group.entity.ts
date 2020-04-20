@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { Rule } from 'src/modules/rule/entitys/rule.entity';
+import { User } from 'src/modules/user/entitys/user.entity';
 
 @Entity()
 export class RuleGroup {
@@ -12,8 +19,12 @@ export class RuleGroup {
   @Column()
   description: string;
 
-  @Column()
-  user: number;
+  @ManyToOne(
+    type => User,
+    user => user.rule,
+    { onDelete: 'CASCADE' },
+  )
+  user: User;
 
   @OneToMany(
     type => Rule,

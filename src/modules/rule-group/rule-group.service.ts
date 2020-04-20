@@ -12,7 +12,7 @@ export class RuleGroupService {
     private ruleGroupRepository: Repository<RuleGroup>,
   ) {}
 
-  async insert(ruleGroup: RuleGroupInterface): Promise<InsertResult> {
+  async insert(ruleGroup: RuleGroup): Promise<InsertResult> {
     return await this.ruleGroupRepository.insert(ruleGroup);
   }
 

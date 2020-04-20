@@ -4,6 +4,7 @@ import { Repository, InsertResult, DeleteResult } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import { User } from './entitys/user.entity';
 import { UserUpdateData } from './interfaces/user.update.data';
+import { PasswordUpdateData } from './interfaces/password.update.data';
 
 @Injectable()
 export class UserService {
@@ -52,5 +53,20 @@ export class UserService {
       .delete()
       .where('id = :id', { id: userId })
       .execute();
+  }
+
+  async changePassword(
+    userId: number,
+    passwordUpdateData: PasswordUpdateData,
+  ): Promise<User> {
+    const userToUpdate: User = await this.userRepository.findOne({
+      where: { id: userId, password: passwordUpdateData.oldPassword },
+    });
+
+    if (userToUpdate) {
+      userToUpdate.password = passwordUpdateData.newPassword;
+      return this.userRepository.save(userToUpdate);
+    }
+    return;
   }
 }

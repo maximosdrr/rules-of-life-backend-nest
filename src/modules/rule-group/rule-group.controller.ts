@@ -1,7 +1,6 @@
 import {
   Controller,
   Post,
-  Body,
   Get,
   UseGuards,
   Req,
@@ -10,11 +9,9 @@ import {
   Put,
 } from '@nestjs/common';
 import { RuleGroupService } from './rule-group.service';
-import { RuleGroupInterface } from './interfaces/rule-group.interface';
 import { InsertResult, DeleteResult } from 'typeorm';
 import { RuleGroup } from './entitys/rule-group.entity';
 import { JwtGuards } from 'src/auth/jwt.guards';
-import { request } from 'http';
 
 @Controller('rule-group')
 @UseGuards(JwtGuards)
